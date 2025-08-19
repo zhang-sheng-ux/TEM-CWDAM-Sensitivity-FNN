@@ -1,43 +1,40 @@
 # TEM-CWDAM-Sensitivity-FNN
 
-Parameter sensitivity analysis and rapid neural network prediction of transient electromagnetic (TEM) responses in core-wall dams.
+Parameter sensitivity analysis and rapid neural network prediction for transient electromagnetic (TEM) responses in core-wall dams.
 
 ---
 
-## Overview
+## Repository Contents
 
-This repository provides MATLAB code for:
-
-* **Permutation-based sensitivity analysis** (both grouped and pairwise interaction) of geometric and electrical boundary parameters in earth-rock (core-wall) dams.
-* **Time-varying and multi-scale visualization** of sensitivity results.
-* **Feedforward neural network (FNN) modeling** for fast and accurate prediction of TEM response curves under various dam boundary conditions.
-* All scripts are fully documented and support reproduction and further research.
-
----
-
-## Features
-
-* Sensitivity analysis for both geometric (dam height, slope ratio, core wall slope, water level) and electrical (dam body, foundation, core wall, upstream water resistivity) parameters.
-* Visualization of parameter main effects and pairwise interaction effects over multiple time intervals.
-* FNN-based rapid prediction: reduces forward modeling time from hours to seconds with relative error <0.6%.
-* Example data structure and easy customization for your own datasets.
+| File Name                | Description (Function)                                                                                                                                                                               |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| untitled\_sobal2\_2\_.  m  | Grouped time-varying permutation sensitivity analysis for geometric and resistivity parameters, with repeated runs and smoothing.   Saves result matrices for further use.                               |
+| untitled\_sobal2\_2\_1.  m | Visualization of smoothed, time-varying permutation sensitivity (with ±1σ confidence bands) for geometric and resistivity groups, on a log-time axis.   Publication-ready.                               |
+| untitled\_sobal2\_3.  m    | Pairwise (interaction) permutation sensitivity analysis across multiple time intervals, with repeated runs, progress display, and output of lower-triangular sensitivity matrices.                     |
+| untitled\_sobal2\_4.  m    | Visualization and beautification of lower-triangular pairwise permutation sensitivity heatmaps, with gray fill and special labels for low-sensitivity values.                                          |
+| untitled\_sobal2\_5.  m    | Pairwise permutation sensitivity analysis for all parameters over the entire time window (no segmentation), including heatmap output and result saving.                                                |
+| untitled\_sobal2\_6.  m    | Visualization of the lower-triangular pairwise permutation sensitivity heatmap for the full time window, with formatting for publication-quality figures and gray fill.                                |
+| untitled\_sobal3\_2.  m    | Feedforward neural network (FNN) modeling and rapid prediction for TEM response curves under multi-parameter conditions, including training, test evaluation, and prediction for new parameter sets.   |
+| untitled\_sobal3\_5.  m    | Systematic comparison of neural network activation functions and algorithms (2 layers, 20 neurons each) for TEM prediction;   outputs MSE, R², and training time to a CSV file.                          |
 
 ---
 
-## Repository Structure
+## How to use
 
-| File Name                                    | Description                                                   |
-| -------------------------------------------- | ------------------------------------------------------------- |
-| `permutation_sensitivity_grouped.  m`          | Grouped, time-varying permutation sensitivity analysis        |
-| `plot_permutation_sensitivity_timevarying.  m` | Visualization of time-varying sensitivity with error bands    |
-| `pairwise_permutation_sensitivity.  m`         | Pairwise interaction sensitivity analysis and heatmap results |
-| `plot_pairwise_permutation_heatmap.  m`        | High-quality plotting of pairwise sensitivity heatmaps        |
-| `tem_fnn_prediction.  m`                       | Feedforward neural network for rapid TEM curve prediction     |
-| `normalized_data.  mat`                        | Example data structure (required for running scripts)         |
-| `permutation_grouped_sensitivity.  mat`        | Saved grouped permutation sensitivity results                 |
-| `AB_pairwise_triangle_heatmap_timeseg5.  mat`  | Pairwise sensitivity results (for visualization)              |
-| `trained_net.  mat`                            | Example trained neural network (generated by script)          |
-| `LICENSE`                                    | (Optional) License (MIT recommended for academic sharing)     |
+1.   **Preparation:**
+Place all files in one directory and make sure you have the input data file `normalized_data.  mat` (see script comments for structure requirements).
+
+2.   **Sensitivity analysis:**
+
+* Run `untitled_sobal2_2_.  m` for grouped main effect permutation sensitivity (geometry/resistivity).
+* Run `untitled_sobal2_2_1.  m` for time-varying sensitivity plotting with confidence bands.
+* Run `untitled_sobal2_3.  m` and `untitled_sobal2_4.  m` for pairwise (interaction) sensitivity analysis and heatmap visualization across time intervals.
+* Run `untitled_sobal2_5.  m` and `untitled_sobal2_6.  m` for all-window (non-segmented) pairwise sensitivity analysis and plotting.
+
+3.   **Neural network modeling:**
+
+* Run `untitled_sobal3_2.  m` for FNN training, test, and prediction on new samples.
+* Run `untitled_sobal3_5.  m` to compare different activation functions and training algorithms, with results saved to CSV.
 
 ---
 
@@ -49,21 +46,10 @@ This repository provides MATLAB code for:
 
 ---
 
-## Quick Start
-
-1.   **Clone or download** this repository, and add it to your MATLAB path.
-2.   Ensure the file `normalized_data.  mat` is present in the working directory.
-3.   Run `permutation_sensitivity_grouped.  m` to perform grouped sensitivity analysis.
-4.   Run `plot_permutation_sensitivity_timevarying.  m` to visualize main effect sensitivity.
-5.   Run `pairwise_permutation_sensitivity.  m` and `plot_pairwise_permutation_heatmap.  m` for pairwise interaction analysis.
-6.   Run `tem_fnn_prediction.  m` to train and test the neural network, or predict new response curves.
-
----
-
 ## Data
 
-* The provided `normalized_data.  mat` is a sample structure containing normalized input parameters and log(Bz) response curves.
-* For your own research or industrial applications, replace this with your data in the same structure.
+* The file `normalized_data.  mat` is required but not provided here (see code comments for the required structure).
+* Result `.  mat` files and CSV outputs are produced by running the scripts.
 
 ---
 
@@ -71,23 +57,13 @@ This repository provides MATLAB code for:
 
 
 
+## License
+
+
+---
+
 ## Contact
 
-For questions, suggestions, or collaborations:
-
-* **Zhang Shenghang** (Author)
-* National Key Laboratory of Water Disaster Prevention, NHRI, Nanjing, China
-* Email: [sxzhang@nhri.cn]
-
-* **Lei Tang** (Corresponding Author)
-* National Key Laboratory of Water Disaster Prevention, NHRI, Nanjing, China
-* Email: [ltang@nhri.cn]
-
-
----
-
-**Welcome to contribute, open issues, or fork this project for further research!  **
-
----
-
-> *Last updated: 2024-08-19*
+Lei Tang (Corresponding Author)
+National Key Laboratory of Water Disaster Prevention, NHRI, Nanjing, China
+Email: [ltang@nhri.cn](mailto:ltang@nhri.cn)
